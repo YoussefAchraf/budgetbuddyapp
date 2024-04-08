@@ -1,0 +1,75 @@
+*{
+  padding:0;
+  margin:0;
+  box-sizing:border-box;
+}
+.App{
+  width:100dvw;
+  height:100dvh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow-x: hidden;
+}
+.App > .WebDisp{  
+  width:90dvw;
+  height:95dvh;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.App > .WebDisp header{
+  width:100%;
+  height:auto;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items:center;
+  padding-inline:5%;
+}
+.App > .WebDisp .ReqPg{
+    width:100%;
+    height:auto;
+  }
+.App > .WebDisp footer{
+    width:100%;
+    text-align:center;
+ }
+ .App > .WebDisp header{
+  width:100%;
+  height:auto;
+  display:flex;
+  flex-direction: row;
+  justify-content:space-between;
+}
+nav{
+  gap:40px;
+  height:auto;
+  display:flex;
+  justify-content:space-around;
+}
+.active{
+  color:white !important;
+  background-color: #006F62;
+  border-radius:10px; 
+}
+nav .link{
+  text-decoration: none;
+  color:grey;
+  padding:10px;
+}
+.PwaDisp{
+  width:100dvw;
+  height:100dvh;
+}
+
+@media only screen and (max-width: 600px) {
+  .App > .WebDisp header{
+    flex-direction: column;
+  }
+  nav{
+    margin-top:20px;
+    width:100%;
+  }
+
+}

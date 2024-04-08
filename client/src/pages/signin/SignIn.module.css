@@ -1,0 +1,41 @@
+.SignIn{
+    width:60%;
+    height:auto;
+    margin: 0 auto;
+    display:flex;
+    flex-direction: column;
+  }
+  .h1{
+    color:#006F62;
+    text-align:center;
+    font-size: 40px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-style: italic;
+    font-weight: bold;
+    margin-block:10px;
+  }
+  .SignIn form{
+    display:flex;
+    align-items:center;
+    flex-direction:column;
+  }
+  .SignIn button{
+    width:25%;
+    height:40px;
+    border:none;
+    border-radius:17px;
+    background-color:#006F62;
+    color:white;
+    cursor:pointer;
+  }
+  @media only screen and (max-width: 600px) {
+      .SignIn{
+        width:80%;
+        height:60dvh;
+      }
+      .SignIn button{
+         width:60%;
+         height:50px;
+         
+        }
+    }
