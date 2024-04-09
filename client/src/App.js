@@ -82,7 +82,7 @@ function App() {
               <Route path="https://budgetbuddyapp.onrender.com/signin" element={<SignIn />} />
               <Route 
                 path="https://budgetbuddyapp.onrender.com/dashboard" 
-                element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" />} 
+                element={isLoggedIn ? <Dashboard /> : <Navigate to="https://budgetbuddyapp.onrender.com/login" />} 
               />
             </Routes>
           </section>
