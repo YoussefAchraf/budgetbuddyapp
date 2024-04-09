@@ -80,7 +80,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<LogIn />} />
               <Route path="/signin" element={<SignIn />} />
-              <Route path="/dashboard" element={isLoggedIn ? <Dashboard /> : <LogIn />} />
+              <Route path={isLoggedIn ? "/dashboard" : "/login"} element={isLoggedIn ? <Dashboard /> : <LogIn />} />
             </Routes>
           </section>
           <footer>
