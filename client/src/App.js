@@ -80,13 +80,7 @@ function App() {
               <Route path="https://budgetbuddyapp.onrender.com/" element={<Home />} />
               <Route path="https://budgetbuddyapp.onrender.com/login" element={<LogIn />} />
               <Route path="https://budgetbuddyapp.onrender.com/signin" element={<SignIn />} />
-              <Route 
-                path={isLoggedIn ? 
-                       "https://budgetbuddyapp.onrender.com/dashboard" : 
-                       "https://budgetbuddyapp.onrender.com/login"
-                     }
-                element={isLoggedIn ? <Dashboard /> : <LogIn />}
-              />
+              <Route path="https://budgetbuddyapp.onrender.com/dashboard" element={<Dashboard />}  />
             </Routes>
           </section>
           <footer>
