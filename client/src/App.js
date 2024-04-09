@@ -77,10 +77,10 @@ function App() {
           </header>
           <section className="ReqPg">
             <Routes>
-              <Route path="https://budgetbuddyapp.onrender.com/" element={<Home />} />
-              <Route path="https://budgetbuddyapp.onrender.com/login" element={<LogIn />} />
-              <Route path="https://budgetbuddyapp.onrender.com/signin" element={<SignIn />} />
-              <Route path="https://budgetbuddyapp.onrender.com/dashboard" element={<Dashboard />}  />
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<LogIn />} />
+              <Route path="/signin" element={<SignIn />} />
+              <Route path="/dashboard" element={isLoggedIn ? <Dashboard /> : <LogIn />} />
             </Routes>
           </section>
           <footer>
