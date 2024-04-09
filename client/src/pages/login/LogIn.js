@@ -20,7 +20,7 @@ const LogIn = () => {
       localStorage.setItem('token', response.data.token);
       
       // Redirect to Dashboard after successful login
-      navigate('/dashboard');
+      navigate('https://budgetbuddyapp.onrender.com/dashboard');
       
     } catch (error) {
       console.error('Login error:', error.response);
