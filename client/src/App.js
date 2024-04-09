@@ -1,14 +1,18 @@
+// App.js
+
 import React, { useEffect, useState } from 'react';
-import { Link, useLocation, Route, Routes } from 'react-router-dom';
+import { Link, useLocation, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 import SignIn from './pages/signin/SignIn';
 import LogIn from './pages/login/LogIn';
+import Dashboard from './pages/dashboard/Dashboard';
 import Home from './pages/home/Home';
 import Splash from './pages/spscreen/Splash';
 
 function App() {
   const location = useLocation();
   const [isPWA, setIsPWA] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Track user login status
 
   useEffect(() => {
     // Check if the app is running as a PWA
@@ -19,7 +23,32 @@ function App() {
     };
 
     checkIsPWA();
-    
+
+    // Check if user is logged in
+    const token = localStorage.getItem('token'); // Assuming token is stored in localStorage
+
+    // Function to check if JWT is valid
+    const checkTokenValidity = async () => {
+      try {
+        const response = await fetch('https://budgetbuddyapp.onrender.com/VerUsrToken', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        if (response.ok) {
+          setIsLoggedIn(true); // Set isLoggedIn to true if token is valid
+        }
+      } catch (error) {
+        console.error('Error verifying token:', error);
+      }
+    };
+
+    if (token) {
+      checkTokenValidity();
+    }
+
   }, []);
 
   return (
@@ -51,6 +80,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<LogIn />} />
               <Route path="/signin" element={<SignIn />} />
+              <Route path="/dashboard" element={isLoggedIn ? <Dashboard /> : <LogIn />} />
             </Routes>
           </section>
           <footer>

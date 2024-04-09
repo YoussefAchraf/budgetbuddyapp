@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
 import UsrInpt from "../../components/usrinpt/UsrInpt";
 import Styles from "./LogIn.module.css";
 
@@ -7,7 +8,8 @@ const LogIn = () => {
   const [UsrEm, setEmail] = useState('');
   const [UsrPwd, setPassword] = useState('');
   const [errors, setErrors] = useState({});
-  
+  const navigate = useNavigate(); // Initialize useNavigate hook
+
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -17,7 +19,9 @@ const LogIn = () => {
       // Store JWT token in local storage
       localStorage.setItem('token', response.data.token);
       
-      // Handle successful login
+      // Redirect to Dashboard after successful login
+      navigate('/dashboard');
+      
     } catch (error) {
       console.error('Login error:', error.response);
       if (error.response && error.response.data) {

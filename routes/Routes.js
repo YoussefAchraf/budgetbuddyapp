@@ -55,4 +55,9 @@ router.put('/budget/:budgetId', updateBudget);
 // Update expense endpoint
 router.put('/updateExpense/:expenseId', updateExpense);
 
+router.post('/VerUsrToken', verifyToken, (req, res) => {
+  // If the token is successfully verified by the middleware, you can perform additional actions here if needed
+  res.status(200).send('Token is valid');
+});
+
 module.exports = router;
