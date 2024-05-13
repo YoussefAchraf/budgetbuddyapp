@@ -30,7 +30,7 @@ function App() {
     // Function to check if JWT is valid
     const checkTokenValidity = async () => {
       try {
-        const response = await fetch('https://budgetbuddyapp.onrender.com/VerUsrToken', {
+        const response = await fetch('http://localhost:5000/VerUsrToken', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -55,8 +55,10 @@ function App() {
     <div className="App">
       {isPWA ? (
         <section className="PwaDisp">
-          <Splash />
-          
+          <Routes>
+            <Route path="/" element={<Splash />} />
+            <Route path="/dashboard" element={isLoggedIn ? <Dashboard /> : <Splash />} />          
+          </Routes>
         </section>
       ) : (
         <div className="WebDisp">
@@ -80,7 +82,16 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<LogIn />} />
               <Route path="/signin" element={<SignIn />} />
-              <Route path="/dashboard" element={isLoggedIn ? <Dashboard /> : <LogIn />} />
+              <Route
+                path="/dashboard"
+                element={
+                  isLoggedIn ? (
+                    <Dashboard />
+                  ) : (
+                    <Navigate to="/" replace/> 
+                  )
+                }
+              />
             </Routes>
           </section>
           <footer>

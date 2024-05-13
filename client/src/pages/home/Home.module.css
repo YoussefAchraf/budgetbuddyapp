@@ -1,9 +1,45 @@
 .Home{
   width:100%;
-  height:100%;
+  height:auto;
   display:flex;
   align-items: center;
   justify-content:center;
   flex-direction:row;
   overflow:hidden;
+}
+.Intro{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  flex-direction: column;
+}
+.BbHeading{
+  color:#006F62;
+  font-weight: bolder;
+  font-style: italic;
+  font-size: xx-large;
+  padding-bottom:2dvh;
+}
+.BbDesc{
+  color:grey;
+  word-spacing:1dvw;
+  text-align:left;
+  word-break: break-all;
+  line-height:4dvh;
+}
+.Intro,.IntroLott{
+  width:60%;
+  height:70dvh;
+}
+
+@media only screen and (max-width: 600px) {
+  .Home{
+    flex-direction: column;
+    height:auto;
+  }
+  .Intro,.IntroLott{
+    width:100%;
+    height:50dvh;
+  }
+
 }

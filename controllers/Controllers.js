@@ -103,7 +103,7 @@ exports.saveUserData = (req, res) => {
 exports.loginUser = (req, res) => {
   const { UsrEm, UsrPwd } = req.body;
 
-  // Check if email and password are provided
+  // Check if email and password are provided 
   if (!UsrEm || !UsrPwd) {
     return res.status(400).send('Email and password are required');
   }

@@ -8,20 +8,19 @@ const LogIn = () => {
   const [UsrEm, setEmail] = useState('');
   const [UsrPwd, setPassword] = useState('');
   const [errors, setErrors] = useState({});
-  const navigate = useNavigate(); // Initialize useNavigate hook
-
+  const navigate = useNavigate();
+  
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://budgetbuddyapp.onrender.com/login', { UsrEm, UsrPwd });
+      const response = await axios.post('http://localhost:5000/login', { UsrEm, UsrPwd });
       console.log('Login successful:', response.data);
       
       // Store JWT token in local storage
       localStorage.setItem('token', response.data.token);
       
       // Redirect to Dashboard after successful login
-      navigate('/dashboard');
-      
+      navigate('/dashboard');      
     } catch (error) {
       console.error('Login error:', error.response);
       if (error.response && error.response.data) {
