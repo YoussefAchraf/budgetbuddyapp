@@ -12,6 +12,7 @@
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-style: italic;
     font-weight: bold;
+    margin-block:20px;
   }
   .SignIn form{
     display:flex;
