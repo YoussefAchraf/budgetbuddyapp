@@ -61,7 +61,7 @@ function App() {
           </Routes>
         </section>
       ) : (
-        <div className="WebDisp">
+        <>
           <header>
             <div className="Bb_Logo">
               <img
@@ -82,22 +82,12 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<LogIn />} />
               <Route path="/signin" element={<SignIn />} />
-              <Route
-                path="/dashboard"
-                element={
-                  isLoggedIn ? (
-                    <Dashboard />
-                  ) : (
-                    <Navigate to="/" replace/> 
-                  )
-                }
-              />
             </Routes>
           </section>
           <footer>
             <h4>BudgetBuddy App</h4>
           </footer>
-        </div>
+        </>
       )}
     </div>
   );

@@ -19,8 +19,6 @@ const LogIn = () => {
       // Store JWT token in local storage
       localStorage.setItem('token', response.data.token);
       
-      // Redirect to Dashboard after successful login
-      navigate('/dashboard');      
     } catch (error) {
       console.error('Login error:', error.response);
       if (error.response && error.response.data) {

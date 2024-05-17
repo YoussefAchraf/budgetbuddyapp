@@ -44,7 +44,7 @@
 .ErrMsg{
   color:red;
   font-size:small;
-  padding-top:5.5px;
+  /*padding-top:5.5px;*/
   transition:.3 ease-in-out;
   padding-left:10px;
 

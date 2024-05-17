@@ -12,7 +12,6 @@
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-style: italic;
     font-weight: bold;
-    margin-block:10px;
   }
   .SignIn form{
     display:flex;
@@ -29,10 +28,10 @@
     cursor:pointer;
   }
   @media only screen and (max-width: 600px) {
-      .SignIn{
+      /*.SignIn{
         width:80%;
         height:60dvh;
-      }
+      }*/
       .SignIn button{
          width:60%;
          height:50px;

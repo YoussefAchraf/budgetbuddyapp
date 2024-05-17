@@ -5,11 +5,10 @@
   align-items: center;
   justify-content:center;
   flex-direction:row;
-  overflow:hidden;
 }
 .Intro{
   display:flex;
-  align-items:flex-start;
+  padding-left:4dvw;
   justify-content:center;
   flex-direction: column;
 }
@@ -19,6 +18,7 @@
   font-style: italic;
   font-size: xx-large;
   padding-bottom:2dvh;
+  text-align:left;
 }
 .BbDesc{
   color:grey;
@@ -31,7 +31,6 @@
   width:60%;
   height:70dvh;
 }
-
 @media only screen and (max-width: 600px) {
   .Home{
     flex-direction: column;
@@ -41,8 +40,7 @@
     width:100%;
   }
   .Intro{
-    height:40%;
-    margin-top:20px;
+    padding-inline:2dvw;
   }
   .IntroLott{
     height:60%;
