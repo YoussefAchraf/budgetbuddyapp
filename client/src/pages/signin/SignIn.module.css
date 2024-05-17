@@ -28,10 +28,9 @@
     cursor:pointer;
   }
   @media only screen and (max-width: 600px) {
-      /*.SignIn{
+      .SignIn{
         width:80%;
-        height:60dvh;
-      }*/
+      }
       .SignIn button{
          width:60%;
          height:50px;
