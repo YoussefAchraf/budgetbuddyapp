@@ -13,7 +13,7 @@
 }
 .SplashSect{
   background-color: #006F62;
-  height:50dvh;
+  height:40dvh;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -59,10 +59,10 @@
 
 }
 .IdentSect{
-  height:40dvh;
+  height:60dvh;
   display:flex;
-  align-items:center;
-  justify-content:center;
   flex-direction:column;
+  align-items: center;
+  justify-content: center;
   gap:1dvh;
 }

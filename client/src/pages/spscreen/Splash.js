@@ -4,6 +4,12 @@ import SignIn from "../signin/SignIn";
 import Styles from "./Splash.module.css";
 
 const Splash = () => {
+  const [showSignIn, setShowSignIn] = useState(false);
+  const handleSignInClick = () => {
+    setShowSignIn(true);
+    document.documentElement.style.setProperty('--AlHeight', '40dvh');
+    document.documentElement.style.setProperty('--AuTop', '40dvh');
+  };
   return(
     <div className={Styles.Splash}>
       <div className={Styles.SplashSect}>
@@ -16,8 +22,16 @@ const Splash = () => {
         <h1>BudgetBuddy</h1>
       </div>
       <div className={Styles.IdentSect}>
-        <LogIn />
-        <button>Sign in</button>
+        {showSignIn ?  (
+           <>
+             <SignIn />  
+           </>
+        ):(
+          <>
+            <LogIn />
+            <button onClick={handleSignInClick} >Sign in</button>
+          </>  
+        )}
       </div>
     </div>
   );
