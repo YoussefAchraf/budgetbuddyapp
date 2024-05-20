@@ -1,4 +1,3 @@
-// SignIn.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import UsrInpt from "../../components/usrinpt/UsrInpt";
@@ -11,6 +10,7 @@ const SignIn = () => {
   const [UsrPwd, setPassword] = useState('');
   const [UsrRepPwd, setRepeatPassword] = useState('');
   const [errors, setErrors] = useState({});
+  const [successMessage, setSuccessMessage] = useState('');
 
   const handleFirstNameChange = (event) => {
     setFirstName(event.target.value);
@@ -35,6 +35,9 @@ const SignIn = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    setErrors({}); // Reset errors
+    setSuccessMessage(''); // Reset success message
+
     if (!UsrFnm || !UsrLnm || !UsrEm || !UsrPwd || !UsrRepPwd) {
       setErrors({
         UsrFnm: !UsrFnm ? 'First name is required' : '',
@@ -43,9 +46,6 @@ const SignIn = () => {
         UsrPwd: !UsrPwd ? 'Password is required' : '',
         UsrRepPwd: !UsrRepPwd ? 'Repeat Password is required' : '',
       });
-
-      // Display an alert to the user
-      //alert('All fields are required');
       
       return;
     }
@@ -56,7 +56,7 @@ const SignIn = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/register', {
+      const response = await axios.post('https://budgetbuddyapp.onrender.com/register', {
         UsrFnm,
         UsrLnm,
         UsrEm,
@@ -64,6 +64,13 @@ const SignIn = () => {
       });
 
       console.log('User signed up successfully', response.data);
+      setSuccessMessage('Account successfully created');
+      // Clear form fields
+      setFirstName('');
+      setLastName('');
+      setEmail('');
+      setPassword('');
+      setRepeatPassword('');
     } catch (error) {
       if (error.response) {
         const responseData = error.response.data;
@@ -73,13 +80,9 @@ const SignIn = () => {
           newErrors.UsrEm = 'User already exists';
         }
 
-        // Handle other error cases similarly
-        // Example: Handle invalid email format
         if (responseData.includes('Invalid email format')) {
           newErrors.UsrEm = 'Invalid email format';
         }
-
-        // Add more error cases as needed
 
         setErrors(newErrors);
       }
@@ -89,6 +92,7 @@ const SignIn = () => {
   return (
     <section className={Styles.SignIn}>
       <h1 className={Styles.h1}>Sign in</h1>
+      {successMessage && <p className={Styles.success}>{successMessage}</p>}
       <form onSubmit={handleSubmit}>
         <UsrInpt 
           InptId="UsrFnm"

@@ -1,24 +1,41 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
 import UsrInpt from "../../components/usrinpt/UsrInpt";
 import Styles from "./LogIn.module.css";
 
-const LogIn = () => {
+const LogIn = ({ onLoginSuccess }) => {
   const [UsrEm, setEmail] = useState('');
   const [UsrPwd, setPassword] = useState('');
   const [errors, setErrors] = useState({});
-  const navigate = useNavigate();
-  
+
   const handleLogin = async (e) => {
     e.preventDefault();
+
+    // Reset errors
+    setErrors({});
+
+    // Check if email and password are provided
+    if (!UsrEm.trim() && !UsrPwd.trim()) {
+      setErrors({ UsrEm: 'Email is required', UsrPwd: 'Password is required' });
+      return;
+    } else if (!UsrEm.trim()) {
+      setErrors({ UsrEm: 'Email is required' });
+      return;
+    } else if (!UsrPwd.trim()) {
+      setErrors({ UsrPwd: 'Password is required' });
+      return;
+    }
+
     try {
-      const response = await axios.post('http://localhost:5000/login', { UsrEm, UsrPwd });
+      const response = await axios.post('https://budgetbuddyapp.onrender.com/login', { UsrEm, UsrPwd });
       console.log('Login successful:', response.data);
       
       // Store JWT token in local storage
       localStorage.setItem('token', response.data.token);
-      
+
+      // Call the onLoginSuccess callback
+      onLoginSuccess();
+
     } catch (error) {
       console.error('Login error:', error.response);
       if (error.response && error.response.data) {
@@ -27,6 +44,10 @@ const LogIn = () => {
         if (error.response.data === 'Email and password are required') {
           newErrors.UsrEm = 'Email is required';
           newErrors.UsrPwd = 'Password is required';
+        } else if (error.response.data === 'User not found') {
+          newErrors.UsrEm = 'Email does not exist';
+        } else if (error.response.data === 'Invalid email format') {
+          newErrors.UsrEm = 'Invalid email format';
         } else if (error.response.data === 'Incorrect password') {
           newErrors.UsrPwd = 'Incorrect password';
         }

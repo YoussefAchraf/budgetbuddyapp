@@ -1,5 +1,3 @@
-// App.js
-
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
@@ -8,14 +6,16 @@ import LogIn from './pages/login/LogIn';
 import Dashboard from './pages/dashboard/Dashboard';
 import Home from './pages/home/Home';
 import Splash from './pages/spscreen/Splash';
+import Account from './pages/account/Account'; // Ensure Account component is imported
 
 function App() {
   const location = useLocation();
   const [isPWA, setIsPWA] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Track user login status
+  const [tokenChecked, setTokenChecked] = useState(false); // Track if token validity check is done
 
   useEffect(() => {
-    const checkIsPWA = async () => {
+    const checkIsPWA = () => {
       if (window.matchMedia('(display-mode: standalone)').matches) {
         setIsPWA(true);
       }
@@ -39,14 +39,31 @@ function App() {
         }
       } catch (error) {
         console.error('Error verifying token:', error);
+      } finally {
+        setTokenChecked(true);
       }
     };
 
     if (token) {
       checkTokenValidity();
+    } else {
+      setTokenChecked(true); // No token to check, proceed to show public routes
     }
 
   }, []);
+
+  const handleLoginSuccess = () => {
+    setIsLoggedIn(true);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setIsLoggedIn(false);
+  };
+
+  if (!tokenChecked) {
+    return <div>Loading...</div>; // Show loading indicator while checking token
+  }
 
   return (
     <div className="App">
@@ -69,16 +86,38 @@ function App() {
               />
             </div>
             <nav>
-              <Link className={`link ${location.pathname === '/' ? 'active' : ''}`} to="/">Home</Link>
-              <Link className={`link ${location.pathname === '/login' ? 'active' : ''}`} to="/login">Log in</Link>
-              <Link className={`link ${location.pathname === '/signin' ? 'active' : ''}`} to="/signin">Sign in</Link>
+              {isLoggedIn ? (
+                <>
+                  <Link className={`link ${location.pathname === '/dashboard' ? 'active' : ''}`} to="/dashboard">Dashboard</Link>
+                  <Link className={`link ${location.pathname === '/account' ? 'active' : ''}`} to="/account">Account</Link>
+                  <Link className="link" to="/" onClick={handleLogout}>Logout</Link>
+                </>
+              ) : (
+                <>
+                  <Link className={`link ${location.pathname === '/' ? 'active' : ''}`} to="/">Home</Link>
+                  <Link className={`link ${location.pathname === '/login' ? 'active' : ''}`} to="/login">Log in</Link>
+                  <Link className={`link ${location.pathname === '/signin' ? 'active' : ''}`} to="/signin">Sign in</Link>
+                </>
+              )}
             </nav>
           </header>
           <section className="ReqPg">
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<LogIn />} />
-              <Route path="/signin" element={<SignIn />} />
+              {isLoggedIn ? (
+                <>
+                  <Route path="/dashboard" element={<Dashboard />} />
+                  <Route path="/account" element={<Account />} />
+                  <Route path="/" element={<Navigate to="/dashboard" />} />
+                  <Route path="*" element={<Navigate to="/dashboard" />} />
+                </>
+              ) : (
+                <>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/login" element={<LogIn onLoginSuccess={handleLoginSuccess} />} />
+                  <Route path="/signin" element={<SignIn />} />
+                  {/*<Route path="*" element={<Navigate to="/" />} />*/}
+                </>
+              )}
             </Routes>
           </section>
           <footer>
@@ -89,4 +128,5 @@ function App() {
     </div>
   );
 }
+
 export default App;
