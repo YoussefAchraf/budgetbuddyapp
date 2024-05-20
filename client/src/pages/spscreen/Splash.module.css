@@ -69,12 +69,12 @@
   height:60dvh;
   display:flex;
   flex-direction:column;
-  align-items: center;
-  justify-content: center; 
   gap:1dvh;
 }
 .SiBtn{
+  
   border:none;
   outline:none;
   color:grey;
+  background: none;
 }
