@@ -7,14 +7,15 @@ const Splash = () => {
   const [showSignIn, setShowSignIn] = useState(false);
   const handleSignInClick = () => {
     setShowSignIn(true);
-    document.documentElement.style.setProperty('--AlHeight', '40dvh');
-    document.documentElement.style.setProperty('--AuTop', '40dvh');
+   
   };
-  return(
+  return (
     <div className={Styles.Splash}>
-      <div className={Styles.SplashSect}>
+      <div 
+        className={Styles.SplashSect} 
+        style={{height:showSignIn}}>
         <img
-          src="./BudgetBuddy-Logo-Pwa.png"
+          src="./BudgetBuddy.png"
           alt="BudgetBuddy Pwa Logo"
           width="200px"
           height="200px"
@@ -22,19 +23,20 @@ const Splash = () => {
         <h1>BudgetBuddy</h1>
       </div>
       <div className={Styles.IdentSect}>
-        {showSignIn ?  (
-           <>
-             <SignIn />  
-           </>
-        ):(
+        {showSignIn ? (
+          <SignIn />
+        ) : (
           <>
             <LogIn />
-            <button onClick={handleSignInClick} >Sign in</button>
-          </>  
+            <button 
+              className={Styles.SiBtn}
+              onClick={handleSignInClick}>
+                Sign in
+            </button>
+          </>
         )}
       </div>
     </div>
   );
 };
-
 export default Splash;

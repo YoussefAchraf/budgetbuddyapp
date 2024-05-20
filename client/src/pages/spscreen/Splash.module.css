@@ -1,6 +1,6 @@
 :root {
-  --AlHeight: 60dvh;
-  --AuTop: 60dvh;
+  --SplashSectHeight: 100dvh;
+  --IdentSectHeight: 40dvh;
   --BgColor:#006F62;
 }
 .Splash{
@@ -11,14 +11,22 @@
 .SplashSect,.IdentSect{
   width:100dvw;
 }
+@keyframes AnimateSplashSect {
+  0% {
+    height:100dvh;
+  }
+  100% {
+    height:40dvh;
+  }
+}
 .SplashSect{
-  background-color: #006F62;
-  height:40dvh;
+  height:100dvh;
   display:flex;
   align-items:center;
   justify-content:center;
   flex-direction: column;
   gap:1dvh;
+  animation: AnimateSplashSect 1s ease-in-out forwards 2s;
 }
 @keyframes AnimateLogoImg {
   0% {
@@ -48,7 +56,7 @@
   }
 }
 .SplashSect h1{
-  color:white;
+  color:#006F62;
   font-style: italic;
   font-weight: bold;
   font-style: italic;
@@ -56,13 +64,17 @@
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   animation: AnimateHeading 1s ease-in-out forwards 1s;
   visibility:hidden;
-
 }
 .IdentSect{
   height:60dvh;
   display:flex;
   flex-direction:column;
   align-items: center;
-  justify-content: center;
+  justify-content: center; 
   gap:1dvh;
+}
+.SiBtn{
+  border:none;
+  outline:none;
+  color:grey;
 }
