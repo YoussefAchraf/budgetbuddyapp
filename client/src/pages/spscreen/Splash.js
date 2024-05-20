@@ -9,13 +9,13 @@ const Splash = () => {
     setShowSignIn(true);
    
   };
-  return (
+  return ( 
     <div className={Styles.Splash}>
       <div 
         className={Styles.SplashSect} 
         style={{height:showSignIn}}>
         <img
-          src="./BudgetBuddy.png"
+          src="./BudgetBuddy-Logo-Pwa.png"
           alt="BudgetBuddy Pwa Logo"
           width="200px"
           height="200px"

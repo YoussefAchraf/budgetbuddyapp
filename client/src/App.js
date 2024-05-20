@@ -15,7 +15,6 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Track user login status
 
   useEffect(() => {
-    // Check if the app is running as a PWA
     const checkIsPWA = async () => {
       if (window.matchMedia('(display-mode: standalone)').matches) {
         setIsPWA(true);
@@ -24,10 +23,8 @@ function App() {
 
     checkIsPWA();
 
-    // Check if user is logged in
-    const token = localStorage.getItem('token'); // Assuming token is stored in localStorage
+    const token = localStorage.getItem('token');
 
-    // Function to check if JWT is valid
     const checkTokenValidity = async () => {
       try {
         const response = await fetch('http://localhost:5000/VerUsrToken', {
@@ -38,7 +35,7 @@ function App() {
           }
         });
         if (response.ok) {
-          setIsLoggedIn(true); // Set isLoggedIn to true if token is valid
+          setIsLoggedIn(true);
         }
       } catch (error) {
         console.error('Error verifying token:', error);

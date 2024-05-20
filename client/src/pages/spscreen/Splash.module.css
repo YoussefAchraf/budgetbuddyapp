@@ -20,6 +20,7 @@
   }
 }
 .SplashSect{
+  background-color: #006F62;
   height:100dvh;
   display:flex;
   align-items:center;
@@ -56,7 +57,7 @@
   }
 }
 .SplashSect h1{
-  color:#006F62;
+  color:white;
   font-style: italic;
   font-weight: bold;
   font-style: italic;
@@ -69,10 +70,9 @@
   height:60dvh;
   display:flex;
   flex-direction:column;
-  gap:1dvh;
+  gap:2dvh;
 }
 .SiBtn{
-  
   border:none;
   outline:none;
   color:grey;
