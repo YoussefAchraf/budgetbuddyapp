@@ -70,8 +70,21 @@ function App() {
       {isPWA ? (
         <section className="PwaDisp">
           <Routes>
-            <Route path="/" element={<Splash />} />
-            <Route path="/dashboard" element={isLoggedIn ? <Dashboard /> : <Splash />} />          
+            {isLoggedIn ? (
+              <>
+                <Route path="/" element={<Navigate to="/dashboard" />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/account" element={<Account />} />
+                <Route path="*" element={<Navigate to="/dashboard" />} />
+              </>
+            ) : (
+              <>
+                <Route path="/" element={<Splash />} />
+                <Route path="/login" element={<LogIn onLoginSuccess={handleLoginSuccess} />} />
+                <Route path="/signin" element={<SignIn />} />
+                <Route path="*" element={<Navigate to="/" />} />
+              </>
+            )}
           </Routes>
         </section>
       ) : (
@@ -115,7 +128,7 @@ function App() {
                   <Route path="/" element={<Home />} />
                   <Route path="/login" element={<LogIn onLoginSuccess={handleLoginSuccess} />} />
                   <Route path="/signin" element={<SignIn />} />
-                  {/*<Route path="*" element={<Navigate to="/" />} />*/}
+                  <Route path="*" element={<Navigate to="/" />} />
                 </>
               )}
             </Routes>
