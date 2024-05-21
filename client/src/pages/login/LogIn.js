@@ -27,7 +27,7 @@ const LogIn = ({ onLoginSuccess }) => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/login', { UsrEm, UsrPwd });
+      const response = await axios.post('https://budgetbuddyapp.onrender.com/login', { UsrEm, UsrPwd });
       console.log('Login successful:', response.data);
       
       // Store JWT token in local storage

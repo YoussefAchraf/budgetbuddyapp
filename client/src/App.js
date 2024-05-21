@@ -27,7 +27,7 @@ function App() {
 
     const checkTokenValidity = async () => {
       try {
-        const response = await fetch('http://localhost:5000/VerUsrToken', {
+        const response = await fetch('https://budgetbuddyapp.onrender.com/VerUsrToken', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
