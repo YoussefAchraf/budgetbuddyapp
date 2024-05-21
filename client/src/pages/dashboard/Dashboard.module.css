@@ -2,10 +2,8 @@
   width:100%;
   height:80dvh;
   display:flex;
-  justify-content:center;
   align-items:center;
   flex-direction: column;
-  gap:2dvh;
 
 }
 .DashHeading{
@@ -13,6 +11,7 @@
   font-weight: bolder;
   font-style: italic;
   font-size: xx-large;
+  padding-bottom:2dvh;
 }
 h4{
   color:gray

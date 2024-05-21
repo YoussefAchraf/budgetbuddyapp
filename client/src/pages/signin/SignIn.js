@@ -56,7 +56,7 @@ const SignIn = () => {
     }
 
     try {
-      const response = await axios.post('https://budgetbuddyapp.onrender.com/register', {
+      const response = await axios.post('http://localhost:5000/register', {
         UsrFnm,
         UsrLnm,
         UsrEm,
