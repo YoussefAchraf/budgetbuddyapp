@@ -1,49 +1,102 @@
-.Home{
-  width:100%;
-  height:auto;
-  display:flex;
+.Home {
+  width: 100%;
+  height: auto;
+  display: flex;
   align-items: center;
-  justify-content:center;
-  flex-direction:row;
+  justify-content: center;
+  flex-direction: row;
+  padding: 20px;
+  box-sizing: border-box;
 }
-.Intro{
-  display:flex;
-  padding-left:4dvw;
-  justify-content:center;
+
+.Intro {
+  display: flex;
+  justify-content: center;
   flex-direction: column;
+  padding: 20px;
+  box-sizing: border-box;
 }
-.BbHeading{
-  color:#006F62;
+
+.BbHeading {
+  color: #006F62;
   font-weight: bolder;
   font-style: italic;
-  font-size: xx-large;
-  padding-bottom:2dvh;
-  text-align:left;
+  font-size: 2rem;
+  padding-bottom: 20px;
+  text-align: left;
 }
-.BbDesc{
-  color:grey;
-  word-spacing:1dvw;
-  text-align:left;
-  word-break: break-all;
-  line-height:4dvh;
+
+.BbDesc {
+  color: grey;
+  word-spacing: 0.5rem;
+  text-align: left;
+  word-break: break-word;
+  line-height: 1.6;
 }
-.Intro,.IntroLott{
-  width:60%;
-  height:70dvh;
+
+.Intro, .IntroLott {
+  width: 50%;
+  height: auto;
 }
-@media only screen and (max-width: 600px) {
-  .Home{
-    flex-direction: column;
-    height:auto;
-  }
-  .Intro,.IntroLott{
-    width:100%;
-  }
-  .Intro{
-    padding-inline:2dvw;
-  }
-  .IntroLott{
-    height:60%;
+
+.IntroLott {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media only screen and (max-width: 1200px) {
+  .BbHeading {
+    font-size: 1.75rem;
   }
 
+  .BbDesc {
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .Home {
+    flex-direction: column;
+  }
+
+  .Intro, .IntroLott {
+    width: 100%;
+    height: auto;
+  }
+
+  .IntroLott {
+    height: 60%;
+  }
+
+  .BbHeading {
+    font-size: 1.5rem;
+  }
+
+  .BbDesc {
+    font-size: 0.9rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .Home {
+    padding: 10px;
+  }
+
+  .Intro {
+    padding: 10px;
+  }
+
+  .BbHeading {
+    font-size: 1.25rem;
+  }
+
+  .BbDesc {
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+
+  .IntroLott {
+    height: 50%;
+  }
 }

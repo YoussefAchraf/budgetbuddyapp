@@ -1,96 +1,111 @@
-*{
-  padding:0;
-  margin:0;
-  box-sizing:border-box;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
-.App{
-  width:100dvw;
-  height:100dvh;
-  display:flex;
-  flex-direction:column;
+
+.App {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
 }
-header{
-  display:flex;
-  align-items:center;
-  justify-content:space-around;
-  width:100dvw;
-  height:15dvh;
-}
-nav .link{
-  padding-inline:2dvw;
-  padding-block:1dvw;
-  text-decoration:none;
-  color:grey;
-}
-.active{
-  color:white !important;
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 20px;
   background-color: #006F62;
-  border-radius:10px; 
-}
-.ReqPg{
-  
-}
-footer{
-  text-align:center;
-  color:grey;
-}
-/*.App > .WebDisp{  
-  width:90dvw;
-  height:95dvh;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-}
-.App > .WebDisp header{
-  width:100%;
-  height:auto;
-  display:flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items:center;
-  padding-inline:5%;
-}
-.App > .WebDisp .ReqPg{
-    width:100%;
-    height:auto;
-  }
-.App > .WebDisp footer{
-    width:100%;
-    text-align:center;
- }
- .App > .WebDisp header{
-  width:100%;
-  height:auto;
-  display:flex;
-  flex-direction: row;
-  justify-content:space-between;
-}
-nav{
-  gap:40px;
-  height:auto;
-  display:flex;
-  justify-content:space-around;
+  color: white;
 }
 
-nav .link{
+.Bb_Logo img {
+  max-width: 100%;
+  height: auto;
+}
+
+nav {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+}
+
+.nav-open {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+nav .link {
   text-decoration: none;
-  color:grey;
-  padding:10px;
-}
-.PwaDisp{
-  width:100dvw;
-  height:100dvh;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
 }
 
-@media only screen and (max-width: 600px) {
-  .App > .WebDisp header{
+nav .link:hover,
+nav .link.active {
+  background-color: #004d40;
+}
+
+.ReqPg {
+  flex: 1;
+  padding: 20px;
+}
+
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #f1f1f1;
+  color: grey;
+}
+
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  nav {
+    display: none;
+  }
+
+  .nav-open {
+    display: flex;
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    background-color: #006F62;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+}
+
+@media (max-width: 600px) {
+  header {
     flex-direction: column;
   }
-  nav{
-    margin-top:20px;
-    width:100%;
+
+  .Bb_Logo img {
+    width: 50px;
+    height: auto;
   }
 
+  .nav-open {
+    top: 60px;
+    right: 10px;
+  }
 }
-*/

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import UsrInpt from "../../components/usrinpt/UsrInpt";
 import Styles from "./LogIn.module.css";
 
@@ -7,6 +8,7 @@ const LogIn = ({ onLoginSuccess }) => {
   const [UsrEm, setEmail] = useState('');
   const [UsrPwd, setPassword] = useState('');
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate(); // Add useNavigate
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -27,7 +29,7 @@ const LogIn = ({ onLoginSuccess }) => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/login', { UsrEm, UsrPwd });
+      const response = await axios.post('https://budgetbuddyapp.onrender.com/login', { UsrEm, UsrPwd });
       console.log('Login successful:', response.data);
       
       // Store JWT token in local storage
@@ -35,6 +37,9 @@ const LogIn = ({ onLoginSuccess }) => {
 
       // Call the onLoginSuccess callback
       onLoginSuccess();
+
+      // Navigate to dashboard
+      navigate('/dashboard'); // Add navigation to dashboard
 
     } catch (error) {
       console.error('Login error:', error.response);

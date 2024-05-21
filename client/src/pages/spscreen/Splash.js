@@ -3,17 +3,15 @@ import LogIn from "../login/LogIn";
 import SignIn from "../signin/SignIn";
 import Styles from "./Splash.module.css";
 
-const Splash = () => {
+const Splash = ({ onLoginSuccess }) => {
   const [showSignIn, setShowSignIn] = useState(false);
   const handleSignInClick = () => {
     setShowSignIn(true);
-   
   };
+  
   return ( 
     <div className={Styles.Splash}>
-      <div 
-        className={Styles.SplashSect} 
-        style={{height:showSignIn}}>
+      <div className={Styles.SplashSect} style={{height:showSignIn ? 'auto' : '100vh'}}>
         <img
           src="./BudgetBuddy-Logo-Pwa.png"
           alt="BudgetBuddy Pwa Logo"
@@ -27,7 +25,7 @@ const Splash = () => {
           <SignIn />
         ) : (
           <>
-            <LogIn />
+            <LogIn onLoginSuccess={onLoginSuccess}/>
             <button 
               className={Styles.SiBtn}
               onClick={handleSignInClick}>
@@ -39,4 +37,5 @@ const Splash = () => {
     </div>
   );
 };
+
 export default Splash;
