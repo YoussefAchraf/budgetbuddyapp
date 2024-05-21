@@ -1,0 +1,12 @@
+.Account{
+  width:100dvw;
+  height:80dvh;
+  display:flex;
+  justify-content:center;
+}
+.AccHeading{
+  color:#006F62;
+  font-weight: bolder;
+  font-style: italic;
+  font-size: xx-large;
+}

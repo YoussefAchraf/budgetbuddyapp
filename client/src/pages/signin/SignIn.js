@@ -56,7 +56,7 @@ const SignIn = () => {
     }
 
     try {
-      const response = await axios.post('https://budgetbuddyapp.onrender.com/register', {
+      const response = await axios.post('http://localhost:5000/register', {
         UsrFnm,
         UsrLnm,
         UsrEm,
@@ -65,7 +65,6 @@ const SignIn = () => {
 
       console.log('User signed up successfully', response.data);
       setSuccessMessage('Account successfully created');
-      // Clear form fields
       setFirstName('');
       setLastName('');
       setEmail('');

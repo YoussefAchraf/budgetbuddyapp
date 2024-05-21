@@ -6,7 +6,7 @@ import LogIn from './pages/login/LogIn';
 import Dashboard from './pages/dashboard/Dashboard';
 import Home from './pages/home/Home';
 import Splash from './pages/spscreen/Splash';
-import Account from './pages/account/Account'; // Ensure Account component is imported
+import Account from './pages/account/Account'; 
 
 function App() {
   const location = useLocation();
@@ -27,7 +27,7 @@ function App() {
 
     const checkTokenValidity = async () => {
       try {
-        const response = await fetch('https://budgetbuddyapp.onrender.com/VerUsrToken', {
+        const response = await fetch('http://localhost:5000/VerUsrToken', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
