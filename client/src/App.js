@@ -99,14 +99,14 @@ function App() {
                 <Route path="/" element={<Navigate to="/dashboard" />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/account" element={<Account />} />
-                <Route path="*" element={<Navigate to="/dashboard" />} />
+                {/*<Route path="*" element={<Navigate to="/dashboard" />} />*/}
               </>
             ) : (
               <>
                 <Route path="/" element={<Splash onLoginSuccess={handleLoginSuccess} />} />
                 <Route path="/login" element={<LogIn onLoginSuccess={handleLoginSuccess} />} />
                 <Route path="/signin" element={<SignIn />} />
-                <Route path="*" element={<Navigate to="/" />} />
+                {/*<Route path="*" element={<Navigate to="/" />} />*/}
               </>
             )}
           </Routes>

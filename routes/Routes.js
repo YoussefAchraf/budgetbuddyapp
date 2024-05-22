@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { 
+const {
+  getUserInfo,
   saveUserData, 
   loginUser, 
   deleteAccount, 
@@ -17,6 +18,8 @@ const {
   verifyToken, 
   deleteExpensesByBudgetId 
 } = require('../controllers/Controllers');
+
+router.get('/accountInfo',verifyToken,getUserInfo);
 
 // User registration endpoint
 router.post('/register', saveUserData);
@@ -59,5 +62,8 @@ router.post('/VerUsrToken', verifyToken, (req, res) => {
   // If the token is successfully verified by the middleware, you can perform additional actions here if needed
   res.status(200).send('Token is valid');
 });
+
+
+
 
 module.exports = router;

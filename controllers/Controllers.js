@@ -1,3 +1,5 @@
+//Controllers.js
+const { json } = require("body-parser");
 const Db = require("../model/Db");
 const bcrypt = require('bcrypt');
 const crypto = require('crypto-js');
@@ -470,5 +472,25 @@ exports.updateExpense = (req, res) => {
     }
 
     res.status(200).send('Expense updated successfully');
+  });
+};
+
+// Function to get user information
+exports.getUserInfo = (req, res) => {
+  const userEmail = req.user.userEmail;
+  // Query user and userauth tables to get user information
+  Db.query('SELECT user.UsrFnm, user.UsrLnm, userauth.UsrEm FROM user JOIN userauth ON user.UsrId = userauth.UsrId WHERE userauth.UsrEm = ?', [userEmail], (error, results, fields) => {
+    if (error) {
+      console.error(error);
+      return res.status(500).send('Failed to retrieve user information');
+    }
+
+    if (results.length === 0) {
+      return res.status(404).send('User not found');
+    }
+
+    // Return the user information
+    const userInfo = results[0];
+    res.status(200).json(userInfo);
   });
 };

@@ -14,7 +14,7 @@ App.use(bodyParser.json());
 App.use(express.static(path.join(__dirname, "client", "build")));
 
 App.use(cors({
-  origin: 'http://localhost:3000'
+  origin: 'https://budgetbuddyapp.onrender.com'
 }));
 
 // Middleware to parse JSON bodies
@@ -22,9 +22,9 @@ App.use(express.json());
 // Define API routes or other server logic here...
 
 // Serve the React app for any other routes
-App.get("*", (req, res) => {
+/*App.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-});
+});*/
 
 // Routes
 App.use(Routes);

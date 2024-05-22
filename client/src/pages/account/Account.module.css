@@ -1,12 +1,12 @@
-.Account{
-  width:100dvw;
-  height:80dvh;
-  display:flex;
-  justify-content:center;
+.Account {
+  width: 100%;
+  height: 100vh; 
 }
-.AccHeading{
-  color:#006F62;
-  font-weight: bolder;
+
+.AccHeading {
+  color: #006F62;
+  font-weight: bold; 
   font-style: italic;
-  font-size: xx-large;
+  font-size: 2rem;
+  text-align: center; 
 }
