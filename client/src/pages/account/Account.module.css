@@ -7,6 +7,11 @@
   justify-content: center;
 }
 
+.Container {
+  width: 100%;
+  max-width: 500px;
+}
+
 .AccHeading {
   color: #006F62;
   font-weight: bold;
@@ -16,9 +21,8 @@
   margin-bottom: 20px;
 }
 
-.UserInfo {
+.UserInfo, .ChangePassword {
   width: 100%;
-  max-width: 500px;
 }
 
 .InputGroup {
@@ -26,6 +30,7 @@
   align-items: center;
   margin-bottom: 20px;
   width: 100%;
+  position: relative;
 }
 
 .Input {
@@ -87,4 +92,31 @@ button:hover {
     margin-top: 10px;
     align-self: center;
   }
+
+  .PasswordToggle {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+}
+
+.PasswordToggle {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.ChangePasswordButton {
+  background: gray;
+  margin-top: 20px;
+}
+
+.UpdateButton {
+  display: block;
+  margin: 0 auto;
+  margin-top: 10px;
 }
