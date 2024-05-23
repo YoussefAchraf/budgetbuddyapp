@@ -20,7 +20,7 @@ const Account = () => {
       return;
     }
 
-    axios.get('http://localhost:5000/accountInfo', {
+    axios.get('https://budgetbuddyapp.onrender.com/accountInfo', {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -66,7 +66,7 @@ const Account = () => {
         return; // If field doesn't match any case, return early
     }
 
-    axios.put(`http://localhost:5000/account/${endpoint}`, { [field]: value }, {
+    axios.put(`https://budgetbuddyapp.onrender.com/account/${endpoint}`, { [field]: value }, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
