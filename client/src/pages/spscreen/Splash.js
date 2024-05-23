@@ -34,7 +34,7 @@ const Splash = ({ onLoginSuccess }) => {
             onClick={handleBackClick}
             className={`${Styles.BackBtn} ${showSignIn ? Styles.showBackBtn : ''}`}
           >
-            &#8592; {/* HTML entity for left arrow */}
+            &#11178; {/* HTML entity for left arrow */}
           </div>
         )}
         <img
