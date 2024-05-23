@@ -7,6 +7,7 @@
   align-items: center;
   justify-content: center; 
   flex-direction: column;
+  
 }
 
 .DashHeading {
@@ -15,10 +16,12 @@
   font-style: italic;
   font-size: 2rem; 
   padding-bottom: 2rem; 
+  text-align: center; 
 }
 
 h4 {
   color: gray;
   font-size: 1rem; 
   text-align: center; 
+  
 }
