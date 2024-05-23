@@ -9,8 +9,8 @@ const Account = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
   const [isChangingPassword, setIsChangingPassword] = useState(false);
-  const [passwords, setPasswords] = useState({ oldPassword: '', newPassword: '' });
-  const [showPassword, setShowPassword] = useState({ old: false, new: false });
+  const [passwords, setPasswords] = useState({ newPassword: '' });
+  const [showPassword, setShowPassword] = useState({ new: false });
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -20,7 +20,7 @@ const Account = () => {
       return;
     }
 
-    axios.get('https://budgetbuddyapp.onrender.com/accountInfo', {
+    axios.get('http://localhost:5000/accountInfo', {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -42,9 +42,58 @@ const Account = () => {
 
   const handleEditClick = (field) => {
     if (editMode[field]) {
-      setUpdatedMessage({ ...updatedMessage, [field]: `${field === 'UsrFnm' ? 'First Name' : field === 'UsrLnm' ? 'Last Name' : 'Email'} updated successfully` });
+      // Update user information when exiting edit mode
+      updateUserInfo(field, userInfo[field]);
     }
     setEditMode({ ...editMode, [field]: !editMode[field] });
+  };
+
+  const updateUserInfo = (field, value) => {
+    const token = localStorage.getItem('token');
+    let endpoint;
+
+    switch (field) {
+      case 'UsrFnm':
+        endpoint = 'firstname';
+        break;
+      case 'UsrLnm':
+        endpoint = 'lastname';
+        break;
+      case 'UsrEm':
+        endpoint = 'email';
+        break;
+      default:
+        return; // If field doesn't match any case, return early
+    }
+
+    axios.put(`http://localhost:5000/account/${endpoint}`, { [field]: value }, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    .then(response => {
+      setUpdatedMessage({ ...updatedMessage, [field]: `${field === 'UsrFnm' ? 'First Name' : field === 'UsrLnm' ? 'Last Name' : 'Email'} updated successfully` });
+    })
+    .catch(error => {
+      console.error(`Error updating ${field}:`, error);
+      setUpdatedMessage({ ...updatedMessage, [field]: `Failed to update ${field}` });
+    });
+  };
+
+  const updatePassword = () => {
+    const token = localStorage.getItem('token');
+    axios.put(`https://budgetbuddyapp.onrender.com/account/password`, { newPassword: passwords.newPassword }, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    .then(response => {
+      setUpdatedMessage({ ...updatedMessage, password: `Password updated successfully` });
+    })
+    .catch(error => {
+      console.error(`Error updating password:`, error);
+      setUpdatedMessage({ ...updatedMessage, password: `Failed to update password` });
+    });
   };
 
   const handleInputChange = (e) => {
@@ -55,14 +104,13 @@ const Account = () => {
     setPasswords({ ...passwords, [e.target.name]: e.target.value });
   };
 
-  const togglePasswordVisibility = (field) => {
-    setShowPassword({ ...showPassword, [field]: !showPassword[field] });
+  const togglePasswordVisibility = () => {
+    setShowPassword({ ...showPassword, new: !showPassword.new });
   };
 
   const toggleChangePassword = () => {
     setIsChangingPassword(!isChangingPassword);
   };
-
   return (
     <div className={Styles.Account}>
       <div className={Styles.Container}>
@@ -134,19 +182,6 @@ const Account = () => {
               <div className={Styles.ChangePassword}>
                 <div className={Styles.InputGroup}>
                   <input
-                    type={showPassword.old ? 'text' : 'password'}
-                    name="oldPassword"
-                    value={passwords.oldPassword}
-                    onChange={handlePasswordChange}
-                    placeholder="Old Password"
-                    className={Styles.Input}
-                  />
-                  <span onClick={() => togglePasswordVisibility('old')} className={Styles.PasswordToggle}>
-                    {showPassword.old ? '🙈' : '👁️'}
-                  </span>
-                </div>
-                <div className={Styles.InputGroup}>
-                  <input
                     type={showPassword.new ? 'text' : 'password'}
                     name="newPassword"
                     value={passwords.newPassword}
@@ -154,11 +189,11 @@ const Account = () => {
                     placeholder="New Password"
                     className={Styles.Input}
                   />
-                  <span onClick={() => togglePasswordVisibility('new')} className={Styles.PasswordToggle}>
+                  <span onClick={togglePasswordVisibility} className={Styles.PasswordToggle}>
                     {showPassword.new ? '🙈' : '👁️'}
                   </span>
                 </div>
-                <button className={Styles.UpdateButton}>Update Password</button>
+                <button className={Styles.UpdateButton} onClick={updatePassword}>Update Password</button>
               </div>
             )}
           </>

@@ -1,34 +1,39 @@
 :root {
   --SplashSectHeight: 100dvh;
   --IdentSectHeight: 40dvh;
-  --BgColor:#006F62;
+  --BgColor: #006F62;
 }
-.Splash{
-  width:100dvw;
-  height:100dvh;
-  overflow:hidden;
+
+.Splash {
+  width: 100dvw;
+  height: 100dvh;
+  overflow: hidden;
 }
-.SplashSect,.IdentSect{
-  width:100dvw;
+
+.SplashSect, .IdentSect {
+  width: 100dvw;
 }
+
 @keyframes AnimateSplashSect {
   0% {
-    height:100dvh;
+    height: 100dvh;
   }
   100% {
-    height:40dvh;
+    height: 40dvh;
   }
 }
-.SplashSect{
-  background-color: #006F62;
-  height:100dvh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+
+.SplashSect {
+  background-color: var(--BgColor);
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
-  gap:1dvh;
+  gap: 1dvh;
   animation: AnimateSplashSect 1s ease-in-out forwards 2s;
 }
+
 @keyframes AnimateLogoImg {
   0% {
     transform: scale(0);
@@ -43,38 +48,88 @@
     opacity: 1;
   }
 }
-.SplashSect img{
+
+.SplashSect img {
   animation: AnimateLogoImg 1s ease-in-out forwards;
 }
-@keyframes AnimateHeading{
-  0%{
+
+@keyframes AnimateHeading {
+  0% {
     visibility: hidden;
-    opacity:0;
+    opacity: 0;
   }
-  100%{
-    visibility:visible;
-    opacity:1;
+  100% {
+    visibility: visible;
+    opacity: 1;
   }
 }
-.SplashSect h1{
-  color:white;
+
+.SplashSect h1 {
+  color: white;
   font-style: italic;
   font-weight: bold;
-  font-style: italic;
   letter-spacing: 2px;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   animation: AnimateHeading 1s ease-in-out forwards 1s;
-  visibility:hidden;
+  visibility: hidden;
 }
-.IdentSect{
-  height:60dvh;
-  display:flex;
-  flex-direction:column;
-  gap:2dvh;
+
+.IdentSect {
+  height: 60dvh;
+  display: flex;
+  flex-direction: column;
+  gap: 2dvh;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
 }
-.SiBtn{
-  border:none;
-  outline:none;
-  color:grey;
+
+.fadeIn {
+  opacity: 1;
+}
+
+.fadeOut {
+  opacity: 0;
+}
+
+.BackBtn {
+  align-self: flex-start;
+  margin-left: 4vw; /* Updated margin */
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  display: none;
+  outline: none;
+  padding: 0;
+  width:auto;
+  height:auto;
+}
+
+.BackBtn:focus {
+  outline: none; /* Ensure no focus outline */
   background: none;
 }
+
+.showBackBtn {
+  display: block;
+}
+
+.SiBtn {
+  border: none;
+  outline: none;
+  color: grey;
+  background: none;
+  cursor: pointer;
+  width:auto;
+  height:auto;
+  padding:0;
+  margin:0;
+  
+}
+
+.SiBtn:focus {
+  outline: none; /* Ensure no focus outline */
+  background-color:none;
+}
+
