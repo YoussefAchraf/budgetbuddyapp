@@ -20,7 +20,7 @@ const Account = () => {
       return;
     }
 
-    axios.get('http://localhost:5000/accountInfo', {
+    axios.get('https://budgetbuddyapp.onrender.com/accountInfo', {
       headers: {
         'Authorization': `Bearer ${token}`
       }
