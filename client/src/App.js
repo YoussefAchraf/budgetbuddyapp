@@ -6,7 +6,7 @@ import LogIn from './pages/login/LogIn';
 import Dashboard from './pages/dashboard/Dashboard';
 import Home from './pages/home/Home';
 import Splash from './pages/spscreen/Splash';
-import Account from './pages/account/Account';
+import Account from './pages/account/Account'; // Corrected import path
 
 function App() {
   const location = useLocation();
@@ -94,21 +94,19 @@ function App() {
       {isPWA ? (
         <section className="PwaDisp">
           <Routes>
-            {isLoggedIn ? (
-              <>
-                <Route path="/" element={<Navigate to="/dashboard" />} />
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/account" element={<Account />} />
-                {/*<Route path="*" element={<Navigate to="/dashboard" />} />*/}
-              </>
-            ) : (
-              <>
-                <Route path="/" element={<Splash onLoginSuccess={handleLoginSuccess} />} />
-                <Route path="/login" element={<LogIn onLoginSuccess={handleLoginSuccess} />} />
-                <Route path="/signin" element={<SignIn />} />
-                {/*<Route path="*" element={<Navigate to="/" />} />*/}
-              </>
-            )}
+          {isLoggedIn ? (
+        <>
+          <Route path="/" element={<Navigate to="/dashboard" />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="*" element={<Navigate to="/dashboard" />} />
+        </>
+      ) : (
+        <>
+          <Route path="/" element={<Splash onLoginSuccess={handleLoginSuccess} />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="*" element={<Navigate to="/" />} />
+        </>
+      )}
           </Routes>
         </section>
       ) : (

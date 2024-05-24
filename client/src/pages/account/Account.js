@@ -5,7 +5,7 @@ import Styles from "./Account.module.css";
 const Account = () => {
   const [userInfo, setUserInfo] = useState({ UsrFnm: '', UsrLnm: '', UsrEm: '' });
   const [editMode, setEditMode] = useState({ UsrFnm: false, UsrLnm: false, UsrEm: false });
-  const [updatedMessage, setUpdatedMessage] = useState({ UsrFnm: '', UsrLnm: '', UsrEm: '' });
+  const [updatedMessage, setUpdatedMessage] = useState({ UsrFnm: '', UsrLnm: '', UsrEm: '', password: '' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
   const [isChangingPassword, setIsChangingPassword] = useState(false);
@@ -42,7 +42,6 @@ const Account = () => {
 
   const handleEditClick = (field) => {
     if (editMode[field]) {
-      // Update user information when exiting edit mode
       updateUserInfo(field, userInfo[field]);
     }
     setEditMode({ ...editMode, [field]: !editMode[field] });
@@ -63,7 +62,7 @@ const Account = () => {
         endpoint = 'email';
         break;
       default:
-        return; // If field doesn't match any case, return early
+        return;
     }
 
     axios.put(`https://budgetbuddyapp.onrender.com/account/${endpoint}`, { [field]: value }, {
@@ -73,6 +72,16 @@ const Account = () => {
     })
     .then(response => {
       setUpdatedMessage({ ...updatedMessage, [field]: `${field === 'UsrFnm' ? 'First Name' : field === 'UsrLnm' ? 'Last Name' : 'Email'} updated successfully` });
+      if (field === 'UsrEm') {
+        alert('Email updated successfully. Please log in again.');
+        localStorage.removeItem('token');
+        window.location.reload();
+      } else {
+        setTimeout(() => {
+          setUpdatedMessage({ ...updatedMessage, [field]: '' });
+          setEditMode({ ...editMode, [field]: false });
+        }, 1000);
+      }
     })
     .catch(error => {
       console.error(`Error updating ${field}:`, error);
@@ -82,17 +91,25 @@ const Account = () => {
 
   const updatePassword = () => {
     const token = localStorage.getItem('token');
-    axios.put(`https://budgetbuddyapp.onrender.com/account/password`, { newPassword: passwords.newPassword }, {
-      headers: {
-        'Authorization': `Bearer ${token}`
+    axios.put(
+      'https://budgetbuddyapp.onrender.com/account/password',
+      { UsrPwd: passwords.newPassword }, // Sending the new password under the key 'UsrPwd'
+      {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
       }
-    })
+    )
     .then(response => {
-      setUpdatedMessage({ ...updatedMessage, password: `Password updated successfully` });
+      setUpdatedMessage({ ...updatedMessage, password: 'Password updated successfully' });
+      setTimeout(() => {
+        setUpdatedMessage({ ...updatedMessage, password: '' });
+        setPasswords({ newPassword: '' });
+      }, 1000);
     })
     .catch(error => {
-      console.error(`Error updating password:`, error);
-      setUpdatedMessage({ ...updatedMessage, password: `Failed to update password` });
+      console.error('Error updating password:', error);
+      setUpdatedMessage({ ...updatedMessage, password: 'Failed to update password' });
     });
   };
 
@@ -111,6 +128,7 @@ const Account = () => {
   const toggleChangePassword = () => {
     setIsChangingPassword(!isChangingPassword);
   };
+
   return (
     <div className={Styles.Account}>
       <div className={Styles.Container}>
