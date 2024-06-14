@@ -1,4 +1,4 @@
-import Styles from "Budget.module.css";
+import Styles from "./Budget.module.css";
 const Budget = ( ) => {
   return(
     <div className={Styles.Budget}>

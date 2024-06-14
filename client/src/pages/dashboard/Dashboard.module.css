@@ -2,23 +2,24 @@
 
 .Dashboard {
   width: 100%;
-  min-height: auto; /* Change height to min-height */
+  min-height: auto; 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 20px; /* Add padding for better spacing */
+  background-color: lightgray;
+
 }
 
 .PwaDashboard {
-  width: 100vw; /* Set width to 100vw for full viewport width */
-  height: 100vh; /* Set height to 100vh for full viewport height */
+  width: 100vw; 
+  height: 100vh; 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 20px;
 }
 .DashboardContent {
-  flex: 1; /* Fill remaining space */
+  flex: 1; 
 }
 
 .DashHeading {
@@ -39,26 +40,24 @@ h4 {
 .Buttons {
   display: flex;
   flex-direction: row;
-  justify-content: center; /* Center buttons horizontally */
-  margin-top: 20px; /* Add margin for better spacing */
+  justify-content: center; 
+  margin-top: 20px;
 }
 
 .Button {
-  /* Add button styles */
   padding: 10px 20px;
   margin: 0 10px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  background-color: transparent; /* Transparent background */
-  transition: background-color 0.3s ease; /* Smooth transition */
+  background:none; 
 }
 
 .SelectedButton {
-  background-color: #006F62; /* Change background color for selected button */
-  color: white; /* Change text color for selected button */
+  background-color: white;
+  color: #006F62; 
 }
 
 .Button:hover {
-  background-color: lightgray; /* Change background color on hover */
+  background-color: white;
 }

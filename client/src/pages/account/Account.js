@@ -20,7 +20,7 @@ const Account = () => {
       return;
     }
 
-    axios.get('https://budgetbuddyapp.onrender.com/accountInfo', {
+    axios.get('http://localhost:5000/accountInfo', {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -65,7 +65,7 @@ const Account = () => {
         return;
     }
 
-    axios.put(`https://budgetbuddyapp.onrender.com/account/${endpoint}`, { [field]: value }, {
+    axios.put(`http://localhost:5000/account/${endpoint}`, { [field]: value }, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -92,7 +92,7 @@ const Account = () => {
   const updatePassword = () => {
     const token = localStorage.getItem('token');
     axios.put(
-      'https://budgetbuddyapp.onrender.com/account/password',
+      'http://localhost:5000/account/password',
       { UsrPwd: passwords.newPassword }, // Sending the new password under the key 'UsrPwd'
       {
         headers: {

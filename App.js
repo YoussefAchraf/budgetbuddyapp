@@ -14,7 +14,7 @@ App.use(bodyParser.json());
 App.use(express.static(path.join(__dirname, "client", "build")));
 
 App.use(cors({
-  origin: 'https://budgetbuddyapp.onrender.com'
+  origin: 'http://localhost:3000'
 }));
 
 // Middleware to parse JSON bodies

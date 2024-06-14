@@ -430,7 +430,7 @@ exports.updateUserPassword = (req, res) => {
     }
 
     // Update user password in 'userauth' table
-    Db.query('UPDATE userauth SET UsrPwd = ? WHERE UsrId = (select UsrId from userauth where UsrEm = ?)', [hashedPassword, userEmail], (error, results, fields) => {
+    Db.query('UPDATE userauth SET UsrPwd = ? WHERE UsrId  = (select UsrId from userauth where UsrEm = ?)', [hashedPassword, userEmail], (error, results, fields) => {
       if (error) {
         console.error(error);
         return res.status(500).send('Failed to update user password');

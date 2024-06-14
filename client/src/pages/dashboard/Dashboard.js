@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Suspense } from 'react';
 import Styles from "./Dashboard.module.css";
 import { FaChartBar, FaUser } from 'react-icons/fa'; // Import icons
+import Budget from '../../components/budget/Budget';
 
 const Dashboard = () => {
   const [selectedPage, setSelectedPage] = useState('dashboard');
@@ -36,8 +37,7 @@ const Dashboard = () => {
     } else {
       return (
         <div className={Styles.Dashboard}>
-          <h1 className={Styles.DashHeading}>Dashboard page</h1>
-          <h4>Dashboard is under construction and will be updated soon</h4>
+          <Budget />
         </div>
       );
     }
