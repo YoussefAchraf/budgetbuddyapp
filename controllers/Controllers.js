@@ -240,10 +240,10 @@ exports.addExpense = (req, res) => {
 
 // Function to delete user account
 exports.deleteAccount = (req, res) => {
-  const userId = req.user.userId; // Extracted from JWT token
+  const userEmail = req.user.userEmail; // Extracted from JWT token
 
   // Delete user from 'user' table
-  Db.query('DELETE FROM user WHERE UsrId = ?', [userId], (error, results, fields) => {
+  Db.query('DELETE FROM userauth WHERE UsrEm = ?', [userEmail], (error, results, fields) => {
     if (error) {
       console.error(error);
       return res.status(500).send('Failed to delete user account');

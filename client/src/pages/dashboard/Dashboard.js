@@ -42,7 +42,7 @@ const Dashboard = () => {
       );
     }
   };
-
+  
   return (
     <div className={isPwaMode ? Styles.PwaDashboard : Styles.Dashboard}>
       {renderPage()}
