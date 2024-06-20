@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import LogIn from "../login/LogIn";
 import SignIn from "../signin/SignIn";
 import Styles from "./Splash.module.css";
@@ -34,7 +36,8 @@ const Splash = ({ onLoginSuccess }) => {
             onClick={handleBackClick}
             className={`${Styles.BackBtn} ${showSignIn ? Styles.showBackBtn : ''}`}
           >
-            &#11178; {/* HTML entity for left arrow */}
+            {/* FontAwesome Icon */}
+            <FontAwesomeIcon icon={faArrowLeft} />
           </div>
         )}
         <img
