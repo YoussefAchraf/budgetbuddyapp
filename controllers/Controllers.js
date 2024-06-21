@@ -56,7 +56,7 @@ exports.saveUserData = (req, res) => {
   if (!nameRegex.test(UsrLnm)) {
     return res.status(400).send('Last name must contain only letters');
   }
-  Db.query('SELECT * FROM userauth WHERE UsrEm = ?', [UsrEm], (error, results, fields) => {
+  Db.query('SELECT * FROM user WHERE UsrEm = ?', [UsrEm], (error, results, fields) => {
     if (error) {
       console.error(error);
       return res.status(500).send('Failed to check user existence');
@@ -81,21 +81,11 @@ exports.saveUserData = (req, res) => {
       const encryptedUserId = crypto.AES.encrypt(userId, encryptionKey).toString();
 
       // Insert user data into 'user' table
-      Db.query('INSERT INTO user (UsrId, UsrFnm, UsrLnm) VALUES (?, ?, ?)', [encryptedUserId, UsrFnm, UsrLnm], (error, results, fields) => {
+      Db.query('INSERT INTO user (UsrId, UsrEm, UsrPwd, UsrFnm, UsrLnm) VALUES (?, ?, ?, ?, ?)', [encryptedUserId, UsrEm, hashedPassword, UsrFnm, UsrLnm], (error, results, fields) => {
         if (error) {
           console.error(error);
           return res.status(500).send('Failed to save user data');
         }
-
-        // Insert user authentication data into 'userauth' table
-        Db.query('INSERT INTO userauth (UsrId, UsrEm, UsrPwd) VALUES (?, ?, ?)', [encryptedUserId, UsrEm, hashedPassword], (error, results, fields) => {
-          if (error) {
-            console.error(error);
-            return res.status(500).send('Failed to save user authentication data');
-          }
-
-          res.status(200).send('User data and authentication saved successfully');
-        });
       });
     });
   });
@@ -111,7 +101,7 @@ exports.loginUser = (req, res) => {
   }
 
   // Check if the user exists in the database
-  Db.query('SELECT * FROM userauth WHERE UsrEm = ?', [UsrEm], (error, results, fields) => {
+  Db.query('SELECT * FROM user WHERE UsrEm = ?', [UsrEm], (error, results, fields) => {
     if (error) {
       console.error(error);
       return res.status(500).send('Failed to retrieve user data');
@@ -240,10 +230,10 @@ exports.addExpense = (req, res) => {
 
 // Function to delete user account
 exports.deleteAccount = (req, res) => {
-  const userEmail = req.user.userEmail; // Extracted from JWT token
+  const userEmail = req.user.userEmail;
 
   // Delete user from 'user' table
-  Db.query('DELETE FROM userauth WHERE UsrEm = ?', [userEmail], (error, results, fields) => {
+  Db.query('DELETE FROM user WHERE UsrEm = ?', [userEmail], (error, results, fields) => {
     if (error) {
       console.error(error);
       return res.status(500).send('Failed to delete user account');
@@ -430,7 +420,7 @@ exports.updateUserPassword = (req, res) => {
     }
 
     // Update user password in 'userauth' table
-    Db.query('UPDATE userauth SET UsrPwd = ? WHERE UsrId  = (select UsrId from userauth where UsrEm = ?)', [hashedPassword, userEmail], (error, results, fields) => {
+    Db.query('UPDATE user SET UsrPwd = ? WHERE UsrId  = (select UsrId from userauth where UsrEm = ?)', [hashedPassword, userEmail], (error, results, fields) => {
       if (error) {
         console.error(error);
         return res.status(500).send('Failed to update user password');
@@ -477,11 +467,30 @@ exports.updateExpense = (req, res) => {
 
 // Function to get user information
 exports.getUserInfo = (req, res) => {
-  const userEmail = req.user.userEmail;
+  const UsrEm = req.user.userEmail;
   // Query user and userauth tables to get user information
-  Db.query('SELECT user.UsrFnm, user.UsrLnm, userauth.UsrEm FROM user JOIN userauth ON user.UsrId = userauth.UsrId WHERE userauth.UsrEm = ?', [userEmail], (error, results, fields) => {
+  Db.query('SELECT UsrEm, UsrFnm, UsrLnm from user wher UsrEm = ?', [userEmail], (error, results, fields) => {
     if (error) {
       console.error(error);
+      return res.status(500).send('Failed to retrieve user information');
+    }
+
+    if (results.length === 0) {
+      return res.status(404).send('User not found');
+    }
+
+    // Return the user information
+    const userInfo = results[0];
+    res.status(200).json(userInfo);
+  });
+};
+exports.getUserInfo = (req, res) => {
+  const userEmail = req.user.userEmail;
+
+  // Query user and userauth tables to get user information
+  Db.query('SELECT UsrEm, UsrFnm, UsrLnm FROM user WHERE UsrEm = ?', [userEmail], (error, results, fields) => {
+    if (error) {
+      console.error('Database query error:', error);
       return res.status(500).send('Failed to retrieve user information');
     }
 

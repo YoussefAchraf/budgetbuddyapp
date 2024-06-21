@@ -17,6 +17,7 @@
   justify-content: space-between;
   padding: 20px;
 }
+
 .DashboardContent {
   flex: 1; 
 }
@@ -37,26 +38,41 @@ h4 {
 }
 
 .Buttons {
+  
   display: flex;
   flex-direction: row;
-  justify-content: center; 
+  justify-content: space-around; 
   margin-top: 20px;
 }
 
-.Button {
+.Icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 10px 20px;
   margin: 0 10px;
-  border: none;
-  border-radius: 5px;
   cursor: pointer;
-  background:none; 
+  transition: color 0.3s ease-in-out;
 }
 
-.SelectedButton {
-  background-color: white;
-  color: #006F62; 
+.SelectedIcon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  color: #006F62;
+  transition: color 0.3s ease-in-out;
 }
 
-.Button:hover {
-  background-color: white;
+.IconText {
+  margin-top: 5px;
+  font-size: 0.8rem;
+  color: lightgray;
+  transition: color 0.3s ease-in-out;
+}
+
+.SelectedIcon .IconText {
+  color: #006F62;
 }

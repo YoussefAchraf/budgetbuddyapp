@@ -37,7 +37,7 @@ const Dashboard = () => {
     } else {
       return (
         <div className={Styles.Dashboard}>
-          <Budget />
+          
         </div>
       );
     }
@@ -48,18 +48,20 @@ const Dashboard = () => {
       {renderPage()}
       {isPwaMode && (
         <div className={Styles.Buttons}>
-          <button
-            className={selectedPage === 'dashboard' ? Styles.SelectedButton : Styles.Button}
+          <div
+            className={selectedPage === 'dashboard' ? Styles.SelectedIcon : Styles.Icon}
             onClick={() => handleButtonClick('dashboard')}
           >
             <FaChartBar color={selectedPage === 'dashboard' ? '#006F62' : 'lightgray'} />
-          </button>
-          <button
-            className={selectedPage === 'account' ? Styles.SelectedButton : Styles.Button}
+            <span className={Styles.IconText}>Dashboard</span>
+          </div>
+          <div
+            className={selectedPage === 'account' ? Styles.SelectedIcon : Styles.Icon}
             onClick={() => handleButtonClick('account')}
           >
             <FaUser color={selectedPage === 'account' ? '#006F62' : 'lightgray'} />
-          </button>
+            <span className={Styles.IconText}>Account</span>
+          </div>
         </div>
       )}
     </div>
