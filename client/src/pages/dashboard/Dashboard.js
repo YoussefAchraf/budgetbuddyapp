@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Suspense } from 'react';
 import Styles from "./Dashboard.module.css";
 import { FaChartBar, FaUser } from 'react-icons/fa'; // Import icons
-import Budget from '../../components/budget/Budget';
+import Budget from "../../components/budget/Budget";
 
 const Dashboard = () => {
   const [selectedPage, setSelectedPage] = useState('dashboard');
@@ -26,7 +26,6 @@ const Dashboard = () => {
           </div>
         );
       } else if (selectedPage === 'account') {
-        // Lazy load Account component
         const Account = React.lazy(() => import('../account/Account'));
         return (
           <Suspense fallback={<div>Loading...</div>}>
@@ -37,7 +36,18 @@ const Dashboard = () => {
     } else {
       return (
         <div className={Styles.Dashboard}>
-          
+          <div className={Styles.UsrMoney}>
+            //user budget
+            //Total Expenses component
+            //rest money
+          </div>
+          <div>
+            //UsrChar
+            <div className={Styles.UsrLastUpExps}>
+              //latest Updated expenses
+            </div>
+          </div>
+
         </div>
       );
     }

@@ -36,7 +36,7 @@ const SignIn = () => {
     event.preventDefault();
 
     setErrors({}); // Reset errors
-    setSuccessMessage(''); // Reset success message
+    setSuccessMessage('Account successfully created please login'); // Reset success message
 
     if (!UsrFnm || !UsrLnm || !UsrEm || !UsrPwd || !UsrRepPwd) {
       setErrors({
@@ -56,7 +56,7 @@ const SignIn = () => {
     }
 
     try {
-      const response = await axios.post('https://budgetbuddyapp.onrender.com/register', {
+      const response = await axios.post('http://localhost:5000/register', {
         UsrEm,
         UsrPwd,
         UsrFnm,
@@ -91,7 +91,6 @@ const SignIn = () => {
   return (
     <section className={Styles.SignIn}>
       <h1 className={Styles.h1}>Sign in</h1>
-      {successMessage && <p className={Styles.success}>{successMessage}</p>}
       <form onSubmit={handleSubmit}>
         <UsrInpt 
           InptId="UsrFnm"
@@ -134,6 +133,7 @@ const SignIn = () => {
           error={errors.UsrRepPwd}
         />
         <button type="submit">Sign in</button>
+        {successMessage && <p className={Styles.success}>{successMessage}</p>}
       </form>
     </section>
   );

@@ -1,7 +1,6 @@
 .Budget{
-  width:80dvw;
-  height:30dvh;
-  background-color:hsl(173, 100%, 22%);
-  place-self:center;
-  border-radius:50px;
+  width:17dvw;
+  height:70dvh;
+  background-color:rgb(230, 230, 230);
+  border-radius:25px;
 }

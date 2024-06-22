@@ -2,11 +2,9 @@
 
 .Dashboard {
   width: 100%;
-  min-height: auto; 
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background-color: lightgray;
+  height:70dvh;
+  display:flex;
+  flex-direction:row;
 }
 
 .PwaDashboard {
