@@ -6,7 +6,43 @@
   display:flex;
   flex-direction:row;
 }
-
+.UsrInfo{
+  width:20dvw;
+  height:70dvh;
+  background-color: rgb(231, 231, 231);
+  border-radius:20px;
+  color:#006F62;
+  font-weight:bold;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
+  @media(max-width:500px){
+    width:100%;
+    height:10dvh;
+    background-color: lightgray;
+    color:#006F62;
+    font-weight:bold;
+    font-size:larger;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
+    display:flex;
+    align-items:center;
+    justify-content:space-around;
+  }
+}
+.UsrInfoPwa{
+  width:100%;
+  height:10dvh;
+  color:#006F62;
+  font-weight:bold;
+  font-size:larger;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  & > h4{
+    font-size:large;
+    text-align:left;
+    color:#006F62;
+  }
+}
 .PwaDashboard {
   width: 100vw; 
   height: 100vh; 

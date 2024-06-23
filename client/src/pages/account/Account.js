@@ -20,7 +20,7 @@ const Account = () => {
       return;
     }
 
-    axios.get('http://localhost:5000/accountInfo', {
+    axios.get('https://budgetbuddyapp.onrender.com/accountInfo', {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -65,7 +65,7 @@ const Account = () => {
         return;
     }
 
-    axios.put(`http://localhost:5000/account/${endpoint}`, { [field]: value }, {
+    axios.put(`https://budgetbuddyapp.onrender.com/account/${endpoint}`, { [field]: value }, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -92,7 +92,7 @@ const Account = () => {
   const updatePassword = () => {
     const token = localStorage.getItem('token');
     axios.put(
-      'http://localhost:5000/account/password',
+      'https://budgetbuddyapp.onrender.com/account/password',
       { UsrPwd: passwords.newPassword }, // Sending the new password under the key 'UsrPwd'
       {
         headers: {
@@ -133,7 +133,7 @@ const Account = () => {
     const confirmation = window.confirm("Are you sure you want to delete your account?");
     if (confirmation) {
       const token = localStorage.getItem('token');
-      axios.delete('http://localhost:5000/account', {
+      axios.delete('https://budgetbuddyapp.onrender.com/account', {
         headers: {
           'Authorization': `Bearer ${token}`
         }

@@ -146,7 +146,7 @@ exports.addBudget = (req, res) => {
   }
 
   // Query userauth table to get UsrId based on userEmail
-  Db.query('SELECT UsrId FROM userauth WHERE UsrEm = ?', [userEmail], (error, results, fields) => {
+  Db.query('SELECT UsrId FROM user WHERE UsrEm = ?', [userEmail], (error, results, fields) => {
     if (error) {
       console.error(error);
       return res.status(500).send('Failed to retrieve user data');
@@ -172,7 +172,6 @@ exports.addBudget = (req, res) => {
     });
   });
 };
-
 
 // Function to add expense
 exports.addExpense = (req, res) => {
@@ -250,7 +249,7 @@ exports.deleteBudget = (req, res) => {
   const userEmail = req.user.userEmail; // Extracted from JWT token
 
   // Query userauth table to get UsrId based on userEmail
-  Db.query('SELECT UsrId FROM userauth WHERE UsrEm = ?', [userEmail], (error, results, fields) => {
+  Db.query('SELECT UsrId FROM user WHERE UsrEm = ?', [userEmail], (error, results, fields) => {
     if (error) {
       console.error(error);
       return res.status(500).send('Failed to retrieve user data');
@@ -322,9 +321,6 @@ exports.deleteExpensesByBudgetId = (req, res) => {
   });
 };
 
-
-
-
 // Function to update user email
 exports.updateUserEmail = (req, res) => {
   const userEmail = req.user.userEmail; // Extracted from JWT token
@@ -339,7 +335,7 @@ exports.updateUserEmail = (req, res) => {
   }
 
   // Update user email in 'userauth' table
-  Db.query('UPDATE userauth SET UsrEm = ? WHERE UsrEm = ?', [UsrEm, userEmail], (error, results, fields) => {
+  Db.query('UPDATE user SET UsrEm = ? WHERE UsrEm = ?', [UsrEm, userEmail], (error, results, fields) => {
     if (error) {
       console.error(error);
       return res.status(500).send('Failed to update user email');
@@ -348,8 +344,6 @@ exports.updateUserEmail = (req, res) => {
     res.status(200).send('User email updated successfully');
   });
 };
-
-
 
 // Function to update user first name
 exports.updateUserFirstName = (req, res) => {
@@ -365,7 +359,7 @@ exports.updateUserFirstName = (req, res) => {
   }
 
   // Update user first name in 'user' table
-  Db.query('UPDATE user SET UsrFnm = ? WHERE UsrId = (select UsrId from userauth where UsrEm = ?)', [UsrFnm, userEmail], (error, results, fields) => {
+  Db.query('UPDATE user SET UsrFnm = ? WHERE UsrEm = ?', [UsrFnm, userEmail], (error, results, fields) => {
     if (error) {
       console.error(error);
       return res.status(500).send('Failed to update user first name');
@@ -389,7 +383,7 @@ exports.updateUserLastName = (req, res) => {
   }
 
   // Update user last name in 'user' table
-  Db.query('UPDATE user SET UsrLnm = ? WHERE UsrId = (select UsrId from userauth where UsrEm = ?)', [UsrLnm, userEmail], (error, results, fields) => {
+  Db.query('UPDATE user SET UsrLnm = ? WHERE UsrEm = ?', [UsrLnm, userEmail], (error, results, fields) => {
     if (error) {
       console.error(error);
       return res.status(500).send('Failed to update user last name');
@@ -420,7 +414,7 @@ exports.updateUserPassword = (req, res) => {
     }
 
     // Update user password in 'userauth' table
-    Db.query('UPDATE user SET UsrPwd = ? WHERE UsrId  = (select UsrId from userauth where UsrEm = ?)', [hashedPassword, userEmail], (error, results, fields) => {
+    Db.query('UPDATE user SET UsrPwd = ? where UsrEm = ?', [hashedPassword, userEmail], (error, results, fields) => {
       if (error) {
         console.error(error);
         return res.status(500).send('Failed to update user password');
